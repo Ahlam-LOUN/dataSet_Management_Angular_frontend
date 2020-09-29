@@ -1,0 +1,8 @@
+<div class="list-group">
+<h2>    <a   class="list-group-item list-group-item-action active disabled"  style="font-size:35px; text-align:centre;color:white" >
+  {{workflowName}} 
+    </a></h2>  
+ <h4> <a *ngFor="let dataset of datasets" (click)="voir(dataset.dataSetId,dataset.name)" [routerLink]="['/datasets',dataset.dataSetId]"  class="list-group-item list-group-item-action"> {{dataset.name}}
+    </a>
+  </h4>   
+  </div>

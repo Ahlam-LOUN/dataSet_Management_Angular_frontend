@@ -1,0 +1,133 @@
+    <div class="panel panel-default">  
+      <div class="form-inline md-form form-sm  col-md-12 auto">
+        <div class="col-md-12 auto">
+        <div class="input-group mb-3">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search a user"
+            [(ngModel)]="search" 
+            (input)="searchUser()"
+            mdbInput
+            ng-model="query" 
+            ng-focus="focus=true"
+
+          />
+          <div class="input-group-append">
+            <button  mdbBtn
+            class="my-4 waves-effect z-depth-0"
+             mdbWavesEffect
+              type="button"
+              color="info"
+              outline="true" 
+              (click)=" searchUser()"
+            >
+              Search
+            </button>
+          </div>
+        </div>
+      </div>
+      </div>
+   
+    <div class="panel-heading">  
+        <h1 style="text-align: center">User Details  </h1>
+        <h2 style="text-align: right"><a  routerLink="/users/create" class="nav-link"  >
+          <mdb-icon fas icon="user-plus"></mdb-icon></a></h2>
+        <br>  
+        <div class="row" *ngIf="deleteMessage">  
+                  <div class="col-sm-4">  
+                          <div class="alert alert-info alert-dismissible">  
+                                  <button type="button" class="close" data-dismiss="alert">×</button>  
+                                  <strong>User Data Deleted</strong>  
+                          </div>  
+                  </div>  
+                  <div class="col-sm-4"></div>  
+          </div>             
+      </div>  
+    
+      
+    <div class="panel-body">  
+        <table  class="table table-hover table-sm" datatable [dtOptions]="dtOptions"  
+        [dtTrigger]="dtTrigger"  >  
+            <thead class="thead-light">  
+                <tr>  
+                    <th>First Name</th>  
+                    <th>Last Name</th>  
+                    <th>E-mail</th>  
+                    <th>Action</th> 
+                      
+                </tr>  
+            </thead>  
+            <tbody>  
+                 <tr *ngFor="let user of users ">  
+                    <td>{{user.firstname}}</td>  
+                    <td>{{user.lastname}}</td>  
+                    <td>{{user.email}}</td>  
+                    <td>
+                      <div style="text-align: center">
+                      <button class='btn btn-primary' (click)="deleteUser(user.userId)"><mdb-icon fas icon="user-minus"></mdb-icon></button>   
+                      <button  class='btn btn-warning'   
+                      data-toggle="modal" data-backdrop="false" (click)="updateuser(user.userId)" data-target="#myModal"><mdb-icon fas icon="user-edit"></mdb-icon></button>  
+                    </div>
+                    </td>  
+                  </tr>   
+            </tbody><br>  
+        </table>  
+        <hr>
+        <mat-paginator [pageSize]="7" [pageSizeOptions]="[2,20,100]" [length]="totalElements"
+        (page)="nextPage($event)">
+    </mat-paginator>
+      
+    </div>  
+  </div>   
+    
+  <div class="modal" id="myModal">  
+          <div class="modal-dialog">  
+            <div class="modal-content">  
+                  <form [formGroup]="userForm" #updus (ngSubmit)="updateUs(updus)">  
+              <!-- Modal Header -->  
+              <div class="modal-header">  
+                <h4 class="modal-title" style="text-align: center">Update User</h4>  
+                  
+              </div>  
+                
+              <!-- Modal body -->  
+              <div class="modal-body" >  
+                  <div [hidden]="isupdated">  
+    
+                      <input type="hidden" class="form-control"  formControlName="userId" [(ngModel)]="user.userId">  
+                              <div class="form-group">  
+                                  <label for="firstname">Firstname</label>  
+                                  <input type="text" class="form-control"  formControlName="firstname" [(ngModel)]="user.firstname"  >  
+                              </div>  
+                              <div class="form-group">  
+                                <label for="lastname">Lastname</label>  
+                                <input type="text" class="form-control"  formControlName="lastname" [(ngModel)]="user.lastname"  >  
+                            </div>
+
+                              <div class="form-group">  
+                                  <label for="email"> Email</label>  
+                                  <input type="text" class="form-control" formControlName="email" [(ngModel)]="user.email" disabled>  
+                              </div>    
+                              <div class="form-group">  
+                                <label for="name">user Password</label>  
+                                <input type="password" class="form-control" formControlName="password" >                              
+                            </div>                       
+                    </div>    
+                    <div [hidden]="!isupdated">  
+                        <h4>User Detail Updated!</h4>  
+                    </div>          
+                        
+              </div>  
+                
+              <!-- Modal footer -->  
+              <div class="modal-footer" >  
+                <button type="submit" class="btn btn-success" (click)="changeisUpdate()" [hidden]="isupdated">Update</button>  
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>  
+              </div>  
+                
+          </form>  
+            </div>  
+          </div>  
+        </div>  
+       

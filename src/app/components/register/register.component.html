@@ -1,0 +1,149 @@
+
+<h2>Subscribe <mdb-badge color="blue">Join !</mdb-badge>
+</h2>
+<div class="alert alert-danger col-md-6 mx-auto" *ngIf="userExist">
+  <strong> A user with this Email already exist!!</strong>
+ </div>
+<div class="row mt-5">
+    <div class="col-md-6 mx-auto">
+  <!-- Material form register -->
+<mdb-card>
+  <mdb-card-header class="info-color white-text text-center py-4">
+    <h5>
+      <strong>Sign Up</strong>
+    </h5>
+  </mdb-card-header>
+  <!--Card content-->
+  <mdb-card-body class="px-lg-5 pt-0">
+    <!-- Form -->
+    <form [formGroup]="userForm"   (ngSubmit)="createUser($event)"class="text-center" style="color: #757575;">
+
+      <div class="form-row">
+        <div class="col">
+          <!-- First name -->
+          <div class="md-form">
+            <input type="text" class="form-control" mdbInput
+            formControlName="firstname"
+            type="text"
+            [ngClass]="{
+              'is-valid': userForm.get('firstname').valid,
+              'is-invalid':userForm.get('firstname').invalid  && (userForm.get('firstname').touched || userForm.get('firstname').dirty)
+            }"
+            id="firstname"
+           >
+            <label for="firstname">First name</label>
+            
+          <div class="alert alert-danger"
+          *ngIf="userForm.get('firstname').invalid && (userForm.get('firstname').touched || userForm.get('password').dirty)"
+          Class="invalid-feedback"
+        >
+          <div *ngIf="userForm.get('firstname').getError('required')">Firstname is Required !</div>
+          <div *ngIf="userForm.get('firstname').getError('minlength')">Firstname was to be 3 Caracters !</div>
+        </div>
+          </div>
+        </div>
+        <div class="col">
+          <!-- Last name -->
+          <div class="md-form">
+            <input type="text" id="lastname" class="form-control" mdbInput
+            formControlName="lastname"
+            [ngClass]="{
+              'is-valid': userForm.get('lastname').valid,
+              'is-invalid': userForm.get('lastname').invalid  && (userForm.get('lastname').touched || userForm.get('lastname').dirty)
+            }"
+           >
+            <div class="alert alert-danger"
+            *ngIf="userForm.get('lastname').invalid && (userForm.get('lastname').touched || userForm.get('lastname').dirty)"
+            Class="invalid-feedback"
+          >
+            <div *ngIf="userForm.get('lastname').getError('required')">Last name is Required !</div>
+            <div *ngIf="userForm.get('lastname').getError('minlength')">Last name was to be 3min Caracters !</div>
+          </div>
+            <label for="lastname">Last name</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- E-mail -->
+      <div class="md-form mt-0">
+        <input type="email" id="email" class="form-control" mdbInput
+        formControlName="email"
+                  type="text"
+                  type="text"
+                  [ngClass]="{
+                    'is-valid': userForm.get('email').valid,
+                    'is-invalid':userForm.get('email').invalid  && (userForm.get('email').touched || userForm.get('email').dirty)
+                  }"
+                  >
+                  <div class="alert alert-danger"
+                  *ngIf="userForm.get('email').invalid && (userForm.get('email').touched || userForm.get('password').dirty)"
+                  Class="invalid-feedback">
+                  <span *ngIf = "userForm.get('email').getError('email')">   
+                      Invalid Email Format   
+                  </span>
+                  <div *ngIf="userForm.get('email').getError('required')">Email is Required !</div>
+                </div> 
+        <label for="email">E-mail</label>
+      </div>
+
+      <!-- Password -->
+      <div class="md-form">
+        <input type="password" id="password" class="form-control" mdbInput
+        formControlName="password"
+        [ngClass]="{
+          'is-valid': userForm.get('password').valid,
+          'is-invalid': userForm.get('password').invalid  && (userForm.get('password').touched || userForm.get('password').dirty)
+        }"
+       >
+        <div class="alert alert-danger"
+        *ngIf="userForm.get('password').invalid && (userForm.get('password').touched || userForm.get('password').dirty)"
+        Class="invalid-feedback"
+      >
+        <div *ngIf="userForm.get('password').getError('required')">Last name is Required !</div>
+        <div *ngIf="userForm.get('password').getError('minlength')">Last name was to be 8 min Caracters !</div>
+      </div>
+        
+        <label for="password">Password</label>
+        <small id="materialRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+          At least 8 characters and a digit(s)
+        </small>
+      </div>
+
+      <!-- Choose Admin or user number -->
+        <div  class="form-check form-check-inline">
+          <label class="form-check-label mr-5">
+            <input formControlName="admin" type="radio" class="form-check-input" value="false" >
+            User
+          </label>
+          <label class="form-check-label">
+            <input formControlName="admin" type="radio" class="form-check-input" value="true" >
+            Admin
+          </label>
+      </div>
+      
+      <!-- Sign up button -->
+      <button mdbBtn color="info" outline="true" rounded="true" block="true" class="my-4 waves-effect z-depth-0" mdbWavesEffect
+        type="submit">Sign up</button>
+        <div class="modal-footer">
+          <div [hidden]="!submitted">  
+             <!--  <h4>User Added SuccessFully!</h4>  -->
+         </div>
+           
+        </div>
+        <hr>
+
+      <!-- Terms of service -->
+      <p>By clicking
+        <em>Sign up</em> you agree to our
+        <a href="" target="_blank">terms of service</a>. </p>
+
+       
+    </form>
+    <!-- Form -->
+
+  </mdb-card-body>
+
+</mdb-card>
+</div>
+</div>
+<!-- Material form register -->

@@ -1,0 +1,48 @@
+
+
+
+  
+    <!--Grid column-->
+    <div class="mt-3">
+  
+      <mdb-card class="testimonial-card">
+        <mdb-card-body>
+          <!--Name-->
+          <mdb-card-title>
+            <h4 class="blue-text">  <mdb-icon fas icon="quote-left"></mdb-icon> {{ workflow.name }}</h4>
+          </mdb-card-title>
+          <hr>
+          <!--Quotation-->
+        <div class="avatar mx-auto">
+          <div   class="dropdown" placement="top-right" mdbDropdown>
+            <h5 class="pink-text"> <a dropdownToggle mdbWavesEffect type="button"  class="dropdown-toggle waves-light" mdbWavesEffect >
+              <mdb-icon fas icon="database"></mdb-icon> DataSets </a></h5>
+            <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+              <a class="dropdown-item"  [routerLink]="[ '/workflows-structure/data-in-workflow',workflow.workflowId]" (click)="getDataInWork(workflow.workflowId)">Data Sets</a>
+              <a class="dropdown-item"  [routerLink]="[ '/workflows-structure/data-out-workflow',workflow.workflowId]" (click)="getDataOutWork()">Add Data</a>
+            </div>
+          </div>
+          <div  class="dropdown" mdbDropdown>
+            <h5 class="orange-text"> <a dropdownToggle mdbWavesEffect type="button" class="dropdown-toggle waves-light" mdbWavesEffect >
+             <mdb-icon fas icon="users"></mdb-icon> Users</a></h5>
+            <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+              <a class="dropdown-item"  [routerLink]= "[ '/workflows-structure/usersout',workflow.workflowId]" (click)="getUsersOut(workflow.workflowId)">Add Users</a>
+              <a class="dropdown-item" [routerLink]="[ '/workflows-structure/usingby',workflow.workflowId]" (click)="getUsers(workflow.workflowId)">Users</a>
+            </div>
+          </div>
+          <div  class="dropdown" mdbDropdown>
+            <a dropdownToggle mdbWavesEffect type="button" class="dropdown-toggle waves-light" mdbWavesEffect >
+              <mdb-icon fas icon="ellipsis-h"></mdb-icon> Others</a>
+            <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+              <a  class="dropdown-item" (click)="deleteWork(workflow.workflowId)">Remove</a>
+            </div>
+          </div>
+        </div>
+        </mdb-card-body>
+      </mdb-card>
+  
+    </div>
+  <!--Grid row-->
+
+  
+ 

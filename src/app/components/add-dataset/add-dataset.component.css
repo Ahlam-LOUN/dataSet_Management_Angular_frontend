@@ -1,0 +1,25 @@
+
+
+
+
+    .title, a {
+        color: #43425d;
+    }
+
+    .title {
+        font-weight: bold;
+        letter-spacing: 5px;
+    }
+
+    .tag {
+        color: rgba(#4d4f5c,.5);
+    }
+
+    .btn-main {
+        background:  rgba(67,66,93,255);
+    }
+
+    .btn-main-outline {
+        border: 1px solid  rgba(67,66,93,255)
+    }
+

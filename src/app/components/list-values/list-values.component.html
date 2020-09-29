@@ -1,0 +1,136 @@
+  
+ 
+
+<div class="col-sm-4"></div>  
+<br>
+   
+     
+
+<div class="panel panel-default">  
+    <div class="panel-heading">  
+        <h1 style="text-align: center" class="text-center font-weight-bold text-uppercase py-4">{{dataSetName}}</h1><br>  
+        <a   style="margin-left: 50px;"
+ data-toggle="modal"  data-backdrop="false"  (click)="createValue()"  data-target="#myNewModal">
+  <i class="fa fa-plus fa-lg" style="font-size: 40px;color: blue;"></i></a>  
+ <a (click)="exportAsXLSX()"><i class="fa fa-download fa-lg" 
+  style="font-size: 40px;color: green;margin-left: 20px;"></i></a>      
+ <div  class="row" *ngIf="deleteMessage">  
+               
+                  <div class="col-sm-4"></div>  
+                  <div class="col-sm-4">  
+                          <div class="alert alert-info alert-dismissible">  
+                                  <button type="button" class="close" data-dismiss="alert">×</button>  
+                                  <strong>An Item of {{dataSetName}} Data Deleted</strong>  
+                          </div>  
+                  </div>  
+                  <div class="col-sm-4">
+                    
+                  </div>  
+          </div>             
+      </div> 
+
+      <div class="panel-body" style="margin-top: 20px" >   
+        <table  class="table table-hover table-sm table-bordered table-responsive-md table-striped text-center" 
+         >  
+            <thead class="thead-light">  
+                <tr >  
+                    <th *ngFor="let item of values">{{item.id}}</th>  
+                    <th>Action</th> 
+                   
+                      
+                </tr>  
+            </thead>  
+            <tbody *ngIf="showValues">  
+
+            <tr  *ngFor="let num of numbers"> 
+
+               <td  *ngFor="let item of values" >{{item.valuesOfAtt[num-1].value}}</td>
+               
+               <td><button  class='btn btn-primary' style="margin-right:20px;" (click)="deleteValues(num-1)" ><i class="fa fa-futboll-0">Delete</i></button>   
+                <button  class='btn btn-info'  
+                data-toggle="modal" data-backdrop="false"  (click)="updatevalue(num-1)" data-target="#myModal">Update</button>  
+              </td>  
+              </tr>   
+        </tbody><br>  
+    </table> 
+ 
+</div>  
+</div>   
+
+<div class="modal" id="myModal">  
+  <div class="modal-dialog">  
+    <div class="modal-content">  
+          <form   [formGroup]="dataSetupdateform"  #updus (ngSubmit)="updateDataSet(updus)">  
+      <!-- Modal Header -->  
+      <div class="modal-header">  
+        <h4 class="modal-title" style="text-align: center">Update </h4>  
+          
+      </div>  
+        
+      <!-- Modal body -->  
+      <div class="modal-body"  >  
+          <div [hidden]="isupdated" >  
+
+               <div *ngIf="showValues">
+                      <div class="form-group" *ngFor="let attribut of attributes">  
+                          <label for="name">{{attribut.name}}</label>  
+                          <input  type="text" class="form-control"  formControlName={{attribut.name}}  >  
+                      </div>  
+                    </div>         
+            </div>    
+            <div [hidden]="!isupdated">  
+                <h4>user Detail Updated!</h4>  
+            </div>          
+                
+      </div>  
+        <!-- Modal footer -->  
+        <div class="modal-footer" >  
+          <button type="submit" class="btn btn-success" [hidden]="isupdated">Update</button>  
+          <button type="button" class="btn btn-danger" data-dismiss="modal" >Close</button>  
+        </div>  
+          
+    </form>  
+      </div>  
+    </div>  
+  </div>  
+
+
+ 
+
+<br>
+<div class="modal" id="myNewModal">  
+<div class="modal-dialog">  
+<div class="modal-content">  
+<form   [formGroup]="dataSetNewform"  #updus (ngSubmit)="NewDataSet()">  
+<!-- Modal Header -->  
+<div class="modal-header">  
+<h4 class="modal-title" style="text-align: center">Add </h4>  
+
+</div>  
+
+<!-- Modal body -->  
+<div class="modal-body"  >  
+<div [hidden]="isAdded" >  
+
+ <div *ngIf="showValues">
+        <div class="form-group" *ngFor="let attribut of attributes">  
+            <label for="name">{{attribut.name}}</label>  
+            <input  type="text" class="form-control"  formControlName={{attribut.name}}  >  
+        </div>  
+      </div>         
+</div>    
+<div [hidden]="!isAdded">  
+  <h4>Item is Added successfully</h4>  
+</div>          
+  
+</div>  
+<!-- Modal footer -->  
+<div class="modal-footer" >  
+<button type="submit" class="btn btn-success" [hidden]="isAdded">Add</button>  
+<button type="button" class="btn btn-danger" (click)="close()" data-dismiss="modal" >Close</button>  
+</div>  
+
+</form>  
+</div>  
+</div>  
+</div>  

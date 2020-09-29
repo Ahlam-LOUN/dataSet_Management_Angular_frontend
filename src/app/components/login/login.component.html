@@ -1,0 +1,79 @@
+
+<div class="row mt-5">
+  <div class="col-md-6 mx-auto">
+<!-- Material form subscription -->
+<mdb-card>
+
+  <mdb-card-header class="info-color white-text text-center py-4">
+    <h5>
+      <strong>Sign In</strong>
+      
+    </h5>
+  </mdb-card-header>
+
+  <!--Card content-->
+  <mdb-card-body class="px-lg-5">
+
+    <!-- Form -->
+    <form class="text-center"  [formGroup]="loginForm" (ngSubmit)="signIn()" style="color: #757575;">
+
+      
+      <!-- E-mai -->
+      <div class="md-form">
+        <input type="email"  class="form-control" mdbInput
+        formControlName="email"
+        [ngClass]="{
+          'is-valid': loginForm.get('email').valid,
+          'is-invalid': loginForm.get('email').invalid  && (loginForm.get('email').touched || loginForm.get('email').dirty)
+        }"
+        class="form-control"
+        id="email">
+        <label for="email">E-mail</label>
+        <div
+        *ngIf="loginForm.get('email').invalid && (loginForm.get('email').touched || loginForm.get('password').dirty)"
+        Class="invalid-feedback"
+      >
+        <div *ngIf="loginForm.get('email').getError('required')">Email is Required !</div>
+      </div>
+      </div>
+      <!-- Name -->
+      <div class="md-form mt-3">
+        <input id="password" class="form-control" mdbInput
+        formControlName="password"
+        type="password"
+        [ngClass]="{
+          'is-valid': loginForm.get('password').valid,
+          'is-invalid': loginForm.get('password').invalid  && (loginForm.get('password').touched || loginForm.get('password').dirty)
+        }"
+        class="form-control"
+        id="password">
+        <label for="password">Password</label>
+        <div
+        *ngIf="loginForm.get('password').invalid && (loginForm.get('password').touched || loginForm.get('password').dirty)"
+        Class="invalid-feedback"
+      >
+        <div *ngIf="loginForm.get('password').getError('required')">Password is Required !</div>
+        <div *ngIf="loginForm.get('password').getError('minlength')">Password was to be 8 Caracters !</div>
+      </div>
+      </div>
+
+
+      <!-- Sign in button -->
+      <button mdbBtn  [disabled]="loginForm.invalid" color="info" outline="true" rounded="true" block="true" class="z-depth-0 my-4 waves-effect" mdbWavesEffect
+        type="submit">Sign in</button>
+
+    </form>
+    <!-- Form -->
+
+  </mdb-card-body>
+
+</mdb-card>
+<!-- Material form subscription -->
+</div>
+</div>
+
+
+
+
+
+

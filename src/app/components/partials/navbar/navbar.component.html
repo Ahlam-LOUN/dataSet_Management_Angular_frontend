@@ -1,0 +1,58 @@
+
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark bg-primary" [containerInside]="false">
+    <!-- Navbar brand -->
+    <mdb-navbar-brand><a class="navbar-brand" href="#">i-DataSets</a></mdb-navbar-brand>
+
+    <!-- Collapsible content -->
+    <links>
+    <ul class="navbar-nav mr-auto">
+      <li *ngIf="loggedIn" class="nav-item active">
+        <a class="nav-link" routerLink="/"> <mdb-icon fas icon="home"></mdb-icon>Home <span class="sr-only">(current)</span>    
+        </a>
+      </li>
+    </ul>
+    <ul *ngIf="!loggedIn" class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a routerLink="/register" class="nav-link">Sign Up</a>
+      </li>
+
+      <li class="nav-item">
+        <a routerLink="/login" class="nav-link">Login</a>
+      </li>
+    </ul>
+
+    <ul *ngIf="loggedIn" class="navbar-nav ml-auto">
+      <li   *ngIf="loggedIn"  class="nav-item dropdown" dropdown>
+        <a  *ngIf="isAdmin"   dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect >
+          <mdb-icon fas icon="database"></mdb-icon> DataSets <span class="caret"></span></a>
+        <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+          <a  routerLink="/datasets-structure/create"  class="dropdown-item waves-light" mdbWavesEffect href="#">Create Dataset</a>
+          <a  routerLink="/datasets-structure/list"class="dropdown-item waves-light" mdbWavesEffect href="#">List of Data</a>
+        </div>
+      </li>
+
+      <li *ngIf="loggedIn"  class="nav-item dropdown" dropdown>
+        <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect >
+          <mdb-icon fas icon="briefcase"></mdb-icon> Workflows<span class="sr-only">(current)</span></a>
+        <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+          <a    *ngIf="isAdmin" routerLink="/workflows-structure"  class="dropdown-item waves-light" mdbWavesEffect href="#">workflow struct</a>
+          <a  routerLink="/workflows" class="dropdown-item waves-light" mdbWavesEffect href="#">List of workflow</a>
+        </div>
+      </li>
+      <li *ngIf="loggedIn"  class="nav-item">
+        <a  *ngIf="isAdmin" class="nav-link" routerLink="/users">
+          <mdb-icon fas icon="users-cog"></mdb-icon> Users<span class="sr-only">(current)</span></a>
+      </li>
+      <li *ngIf="loggedIn"  class="nav-item dropdown" dropdown>
+      <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect >
+        <mdb-icon fas icon="user"></mdb-icon> {{ userInfos }} <span class="caret"></span></a>
+      <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+        <a  routerLink="/account" class="dropdown-item waves-light" mdbWavesEffect href="#">My account</a>
+        <a  (click)="logout()" class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a>
+      </div>
+    </li>
+  </ul>
+  
+</links>
+</mdb-navbar>

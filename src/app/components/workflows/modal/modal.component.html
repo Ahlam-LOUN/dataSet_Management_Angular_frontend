@@ -1,0 +1,41 @@
+<div class="modal" style="background: none;" id="myModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">  
+  <div class="modal-dialog"> 
+    <div class="modal-content">  
+          <form [formGroup]="workflowForm" (ngSubmit)="creatework()" >  
+      <!-- Modal Header -->  
+      <div class="modal-header">  
+        <h4 class="modal-title" style="text-align: center">New workflow</h4>  
+      </div> 
+      <br>
+      <div class="alert alert-danger col-md-8 mx-auto" *ngIf="workflowExist">
+        <strong> This Workflow is already exist !!</strong>
+       </div> 
+<!-- Modal body -->  
+<div class="modal-body" >  
+  <div [hidden]="isupdated">  
+              <div class="form-group">  
+                  <label for="name">Workflow Name</label>  
+                  <input type="text" class="form-control"  formControlName="name"  >  
+                  <div class="alert alert-danger"
+                  *ngIf="workflowForm.get('name').invalid && (workflowForm.get('name').touched )"
+                  Class="invalid-feedback">
+                  <div *ngIf="workflowForm.get('name').getError('required')">Name is Required !</div>
+                </div>
+              </div>                           
+    </div>    
+    <div [hidden]="!isupdated">  
+        <h4>Workflow Added!</h4>  
+    </div>          
+        
+</div>  
+
+<!-- Modal footer -->  
+<div class="modal-footer">  
+<button [disabled]="workflowForm.invalid" type="submit" class="btn btn-success"  [hidden]="isupdated">Add</button>  
+<button type="button" class="btn btn-danger" (click)="closeModal()" data-dismiss="modal">Close</button>  
+</div>  
+
+</form>  
+</div>  
+</div>  
+</div>  

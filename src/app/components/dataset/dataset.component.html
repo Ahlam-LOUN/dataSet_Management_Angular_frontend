@@ -1,0 +1,18 @@
+<div class="card border-primary mt-3">
+    <!--Card-->
+    <mdb-card cascade="true" narrower="true">
+
+      <mdb-card-body cascade="true" class="text-center">
+        <!--Card content-->
+        <h5 class="blue-text">
+            <mdb-icon fas icon="database"></mdb-icon> Data Set</h5>
+        <!--Title-->
+        <h4 class="card-title">{{dataset.name}}</h4>
+        <a mdbBtn color="primary" class="waves-light" mdbWavesEffect [routerLink]="[ '/datasets-structure/add-attributs',dataset.dataSetId]"><mdb-icon fas icon="plus-square"></mdb-icon> Attributs</a>
+        <a mdbBtn color="warning" class="waves-light" mdbWavesEffect (click)="deleteWork(dataset.dataSetId)"> <mdb-icon far icon="trash-alt"></mdb-icon> Remove</a>
+      </mdb-card-body>
+      <!--/.Card content-->
+
+    </mdb-card>
+    <!--/.Card-->
+  </div>

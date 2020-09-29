@@ -1,0 +1,111 @@
+<div class="row mt-5">
+  <div class="col-md-6 mx-auto">
+<mdb-card>
+  <mdb-card-header class="info-color white-text text-center py-4">
+    <h5>
+      <strong>My Account</strong>
+    </h5>
+  </mdb-card-header>
+  <!--Card content-->
+  <mdb-card-body class="px-lg-5 pt-0">
+      <form [formGroup]="accountForm" (ngSubmit)="update()" class="text-center" style="color: #757575;">
+        <div class="row"></div>
+          <div class="md-form">
+                <input
+                  formControlName="email"
+                  type="text"
+                  [ngClass]="{
+                    'is-valid': accountForm.get('email').valid,
+                    'is-invalid': accountForm.get('email').invalid  && (accountForm.get('email').touched || accountForm.get('email').dirty)
+                  }"
+                  class="form-control"
+                  id="email"
+                  mdbInput
+                  disabled/> 
+                  <label for="email">Email</label>              
+      
+        
+        </div>
+        <div class="form-row">
+        <div class="col">
+          <!-- First name -->
+          <div class="md-form">
+          <input
+            formControlName="firstname"
+            type="text"
+            mdbInput
+            [ngClass]="{
+              'is-valid': accountForm.get('firstname').valid,
+              'is-invalid': accountForm.get('firstname').invalid  && (accountForm.get('firstname').touched || accountForm.get('firstname').dirty)
+            }"
+            class="form-control"
+            id="firstname"
+           
+          >
+          <label for="firstname">Firstname</label>
+  
+          <div
+            *ngIf="accountForm.get('firstname').invalid && (accountForm.get('firstname').touched || accountForm.get('lastname').dirty)"
+            Class="invalid-feedback"
+          >
+            <div *ngIf="accountForm.get('firstname').getError('required')">Firstname is Required !</div>
+          </div>
+        </div>
+        </div>
+        <div class="col">
+          <!-- Last name -->
+          <div class="md-form">
+          <input
+            formControlName="lastname"
+            type="text"
+            [ngClass]="{
+              'is-valid': accountForm.get('lastname').valid,
+              'is-invalid': accountForm.get('lastname').invalid  && (accountForm.get('lastname').touched || accountForm.get('lastname').dirty)
+            }"
+            class="form-control"
+            id="lastname"
+            mdbInput
+          >
+          <label for="lastname">Lastname</label>
+          <div
+            *ngIf="accountForm.get('lastname').invalid && (accountForm.get('lastname').touched || accountForm.get('lastname').dirty)"
+            Class="invalid-feedback"
+          >
+            <div *ngIf="accountForm.get('lastname').getError('required')">Lastname is Required !</div>
+            <div *ngIf="accountForm.get('lastname').getError('minlength')">Lastname was to be 3 Caracters !</div>
+          </div>
+        </div>
+        </div>
+        </div>
+        <div class="md-form">
+            
+            <input
+              formControlName="password"
+              type="password"
+              [ngClass]="{
+                'is-valid': accountForm.get('password').valid,
+                'is-invalid': accountForm.get('password').invalid 
+              }"
+              class="form-control"
+              id="password"
+              mdbInput
+            >
+            <label for="password">Password</label>
+            <div
+              *ngIf="accountForm.get('password').invalid "
+              Class="invalid-feedback"
+            >
+              <div *ngIf="accountForm.get('password').getError('minlength')">Password was to be 8 Caracters !</div>
+            </div>
+          </div>
+
+        <button [disabled]="accountForm.invalid" class="btn btn-primary btn-block">Edit</button>
+      </form>
+    </mdb-card-body>
+
+  </mdb-card>
+    </div>
+  </div>
+  
+
+

@@ -1,0 +1,9 @@
+label{
+	margin:0 0 3px 0;
+	padding:0px;
+	display:block;
+	font-weight: bold;
+}
+span.required{
+	color:red;
+}

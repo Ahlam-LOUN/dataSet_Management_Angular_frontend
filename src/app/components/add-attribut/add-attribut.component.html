@@ -1,0 +1,66 @@
+<h1>Create A New Attribut   <mdb-badge color="blue"> New </mdb-badge> </h1>
+<div class="row"> </div>
+<div class="col-6"></div>
+  <br>
+  <div class="alert alert-danger col-md-6 mx-auto" *ngIf="attributExist">
+    <strong> This Atrribut is already exist in this DataSet !!</strong>
+   </div>
+<form [formGroup]="attributForm" class="container mt-3" (ngSubmit)="createAttribut($event)">
+    <div class="row justify-content-center">
+      <div class="col-6">
+
+
+        <section class="container border mb-4 p-3" >
+          <div class="row">
+            <div class="col-6" >
+                <h4 >Attribut</h4>
+            </div>
+            <div class="col-6 text-right">
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" class="form-control" formControlName="name"  name="name"/>
+                    <br>
+                    <div class="alert alert-danger"
+                    *ngIf="attributForm.get('name').invalid && (attributForm.get('name').touched )"
+                    Class="invalid-feedback">
+                    <div *ngIf="attributForm.get('name').getError('required')">Name is Required !</div>
+                  </div>
+                  </div>
+            </div>  
+       
+            <div class="col-6">
+                <div class="form-group">
+                    <label>DataType</label>
+                    <select   class="browser-default custom-select"  formControlName="datatype" name="datatype" placeholder="STRING">
+                        <option value="STRING" >STRING</option>
+                        <option value="STRING" >DOUBLE</option>
+                        <option value="STRING" >BOOLEAN</option>
+                        <option value="FLOAT">FLOAT</option>
+                       <option value="INT">INT</option>    
+                    </select>
+                    <br>
+                    <br>
+                    <div class="alert alert-danger"
+                    *ngIf="attributForm.get('datatype').invalid && (attributForm.get('datatype').touched )"
+                    Class="invalid-feedback">
+                    <div *ngIf="attributForm.get('datatype').getError('required')"> Selected Type is required!</div>
+                  </div>
+                  </div>
+            </div>
+          </div>
+        
+        </section>
+       
+        <div class="text-right">
+        <button  [disabled]="attributForm.invalid" mdbBtn type="submit" color="blue">Add Attribut</button>    
+        </div>
+       
+      </div>
+    </div>
+  
+  </form>
